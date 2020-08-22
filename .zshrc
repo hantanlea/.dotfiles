@@ -113,3 +113,7 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 eval "$(fasd --init auto)"
 source $ZSH/oh-my-zsh.sh
+#autoload -U compinit
+#compinit
+
+alias lh='ls -a | egrep "^\."'
