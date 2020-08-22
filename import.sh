@@ -5,8 +5,11 @@
 dir="$(pwd)" 
 for f in .[^.]* 
 do
-   echo "Moving $HOME/$f to $HOME/$f.old"
-   mv "$HOME/$f" "$HOME/$f.old"
-   echo "Importing $f"
-   ln -s "$dir/$f" "$HOME/$f"
+   if [ $f != '.git' ] && [ $f != '.gitignore' ]
+   then
+      echo "Moving $HOME/$f to $HOME/$f.old"
+      mv "$HOME/$f" "$HOME/$f.old"
+      echo "Importing $f"
+      ln -s "$dir/$f" "$HOME/$f"
+   fi
 done
