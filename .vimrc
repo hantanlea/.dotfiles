@@ -2,6 +2,10 @@
 
 " If you open this file in Vim, it'll be syntax highlighted for you.
 
+" This fixes hard to read colour scheme when using vim in tmux, also need this in tmux.conf:
+" set -g default-terminal 'screen-256color'
+set background=dark
+
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
 " configuration option turns out not to be necessary for the file named
@@ -78,8 +82,40 @@ inoremap <Left>  <ESC>:echoe "Use h"<CR>
 inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
+
 " open CtrlP with Ctril-P
 let g:ctrlp_map = '<c-p>'
+
 " the commands below assign caps lock to escape lkey on vim start and cancel it on vim exit
 " au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 " au VimLeave * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Caps_Lock'
+
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
+
+" Run pathogen
+execute pathogen#infect()
+
+" Ale - start disabled, toggle on with :ALEToggle
+let g:ale_enabled = 0
+
+" Syntastic
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": [],
+        \ "passive_filetypes": [] }
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_checlk_on_wq = 0
+
+let g:syntastic_sh_checkers = ['shellcheck']
