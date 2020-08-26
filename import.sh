@@ -5,7 +5,7 @@
 dir="$(pwd)" 
 for f in .[^.]* 
 do
-   if [[ ! $f =~ '^\.git.*' ]]; then
+   if [[ ! $f =~ ^\.git.* ]]; then
       if [[ -f ~/$f ]]; then
          read -p "Move $HOME/$f to $HOME/$f.old and replace with .dotfiles/$f?" -n 1 -r
          if [[ $REPLY =~ ^[Yy]$ ]]; then
