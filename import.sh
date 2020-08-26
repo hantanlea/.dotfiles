@@ -5,11 +5,21 @@
 dir="$(pwd)" 
 for f in .[^.]* 
 do
-   if [ $f != '.git' ] && [ $f != '.gitignore' ]
-   then
-      echo "Moving $HOME/$f to $HOME/$f.old"
-      mv "$HOME/$f" "$HOME/$f.old"
-      echo "Importing $f"
-      ln -s "$dir/$f" "$HOME/$f"
+   if [[ ! $f =~ '^\.git.*' ]]; then
+      if [[ -f ~/$f ]]; then
+         read -p "Move $HOME/$f to $HOME/$f.old and replace with .dotfiles/$f?" -n 1 -r
+         if [[ $REPLY =~ ^[Yy]$ ]]; then
+            mv -i "$HOME/$f" "$HOME/$f.old"
+            ln -s "$dir/$f" "$HOME/$f"
+            echo "$f imported successfully"
+         else
+            echo "$f NOT IMPORTED"
+         fi
+      else
+         read -p "$f does not exist in your home directory. Import from .dotfiles?" -n 1 -r
+         if [[ $REPLY =~ ^[Yy]$ ]]; then
+            ln -s "$dir/$f" "$HOME/$f"
+         fi
+      fi
    fi
 done
