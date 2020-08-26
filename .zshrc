@@ -104,16 +104,18 @@ plugins=(
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias v='f -e vim'
-alias dotfiles='usr/bin/git --git-dir=/home/nathan/.dotfiles/ --work-tree=/home/nathan'
+
+# If .sh_aliases exists then source it
+if [ -f ~/.sh_aliases ]; then
+    . ~/.sh_aliases
+fi
 
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
+
 eval "$(fasd --init auto)"
 source $ZSH/oh-my-zsh.sh
-#autoload -U compinit
-#compinit
+source ~/.config/broot/launcher/bash/br
 
-alias lh='ls -a | egrep "^\."'
