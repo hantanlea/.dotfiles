@@ -1,0 +1,8 @@
+alias v='f -e vim'
+alias dotfiles='usr/bin/git --git-dir=/home/nathan/.dotfiles/ --work-tree=/home/nathan'
+
+# ls aliases
+alias ll='ls -l'
+alias la='ls -a'
+alias lh='ls -a | egrep "^\."'
+
