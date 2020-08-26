@@ -10,4 +10,8 @@ PS1='[\u@\h \W]\$ '
 
 source /home/nathan/.config/broot/launcher/bash/br
 eval "$(fasd --init auto)"
-alias dotfiles='usr/bin/git --git-dir=/home/nathan/.dotfiles/ --work-tree=/home/nathan'
+
+# If .sh_aliases exists then source it
+if [ -f ~/.sh_aliases ]; then
+    . ~/.sh_aliases
+fi
