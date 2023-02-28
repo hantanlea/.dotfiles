@@ -65,7 +65,7 @@ set noerrorbells visualbell t_vb=
 
 " Enable mouse support. You should avoid relying on this too much, but it can
 " sometimes be convenient.
-set mouse+=a
+"set mouse+=a
 
 " Try to prevent bad habits like using the arrow keys for movement. This is
 " not the only possible bad habit. For example, holding down the h/j/k/l keys
@@ -101,21 +101,27 @@ silent! helptags ALL
 execute pathogen#infect()
 
 " Ale - start disabled, toggle on with :ALEToggle
-let g:ale_enabled = 0
+let g:ale_enabled = 1 
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
 
 " Syntastic
-let g:syntastic_mode_map = {
-        \ "mode": "passive",
-        \ "active_filetypes": [],
-        \ "passive_filetypes": [] }
+"let g:syntastic_mode_map = {
+"        \ "mode": "passive",
+"        \ "active_filetypes": [],
+"        \ "passive_filetypes": [] }
+"
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_checlk_on_wq = 0
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_checlk_on_wq = 0
+"let g:syntastic_sh_checkers = ['shellcheck']
 
-let g:syntastic_sh_checkers = ['shellcheck']
+call plug#begin()
+Plug 'sheerun/vim-polyglot'
+call plug#end()

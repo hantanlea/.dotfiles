@@ -6,3 +6,11 @@ alias ll='ls -l'
 alias la='ls -a'
 alias lh='ls -a | egrep "^\."'
 
+# safe moving and copying
+alias mv="mv -i"
+alias cp="cp -i"
+
+# pi commands
+alias pidown='ssh pi sudo shutdown now'
+alias piboot='ssh pi sudo reboot now'
+

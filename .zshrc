@@ -16,9 +16,6 @@ export LESS_TERMCAP_us=$'\e[1;4;31m'
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
-# set vim key bindings
-bindkey -v
-
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -117,17 +114,23 @@ plugins=(
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# If .sh_aliases exists then source it
-if [ -f ~/.sh_aliases ]; then
-    . ~/.sh_aliases
-fi
-
 ZSH_CACHE_DIR=$HOME/.cache/oh-my-zsh
 if [[ ! -d $ZSH_CACHE_DIR ]]; then
   mkdir $ZSH_CACHE_DIR
 fi
 
-eval "$(fasd --init auto)"
 source $ZSH/oh-my-zsh.sh
 source ~/.config/broot/launcher/bash/br
+eval "$(fasd --init auto)"
+
+# set vim key bindings
+bindkey -v
+
+# If .sh_aliases exists then source it
+if [ -f ~/.sh_aliases ]; then
+    . ~/.sh_aliases
+fi
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 
